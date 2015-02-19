@@ -1,0 +1,49 @@
+//Roman to Integer
+
+public class Solution {
+    public int romanToInt(String s) {
+        int i =0;
+        char[] c = s.toCharArray();
+        int sum = charToInt(c[i]);
+        int pre,cur;
+        for(i=1;i<c.length;i++){
+            pre = charToInt(c[i-1]);
+            cur = charToInt(c[i]);
+            if(cur<=pre){
+                sum +=cur;
+            }
+            else{
+                sum = sum -pre*2 + cur;
+            }
+        }
+        return sum;
+    }
+        
+    public int charToInt(char c){
+        int data = 0;
+        switch(c){
+            case 'I':
+                data = 1;
+                break;
+            case 'V':
+                data = 5;
+                break;
+            case 'X':
+                data = 10;
+                break;
+            case 'L':
+                data = 50;
+                break;
+            case 'C':
+                data = 100;
+                break;
+            case 'D':
+                data = 500;
+                break;
+            case 'M':
+                data = 1000;
+                break;
+        }
+        return data;
+    }
+}
