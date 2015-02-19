@@ -1,0 +1,44 @@
+//String to Integer (atoi)
+
+//Implement atoi to convert a string to an integer.
+
+//Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what 
+//are the possible input cases.
+
+//Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather 
+//all the input requirements up front.
+
+public class Solution {
+    public int atoi(String str) {
+        if(str.length()==0){
+            return 0;
+        }
+        else {
+            str =str.trim();
+            boolean neg = false;
+            int i=0;
+            if(str.charAt(0)=='-'){
+                neg=true;
+                i++;
+            }
+            else if(str.charAt(0)=='+'){
+                i++;
+            }
+            
+            double temp=0;
+            while(str.length()>i&&str.charAt(i)>='0'&&str.charAt(i)<='9'){
+                temp = temp*10+(str.charAt(i) - '0');
+                i++;
+            }
+            if(neg){
+                temp=-temp;
+            }
+            
+            if(temp>2147483647||temp<-2147483648){
+                 if(temp>2147483647) return 2147483647;
+                 else return -2147483648;
+            }
+            return (int)temp;
+        }
+    }
+}
