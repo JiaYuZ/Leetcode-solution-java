@@ -1,0 +1,57 @@
+//Add Binary
+
+//Given two binary strings, return their sum (also a binary string).
+
+//For example,
+//a = "11"
+//b = "1"
+//Return "100".
+
+public class Solution {
+    public String addBinary(String a, String b) {
+        
+        if(b.length()==0||a.length()==0){
+            if(b.length()==0&&a.length()==0)
+            return "";
+            else if(b.length()==0) return a;
+            else return b;
+        }
+        
+        int m=a.length()-1;
+        int n=b.length()-1;
+        char[] achar=a.toCharArray();
+        char[] bchar=b.toCharArray();
+        
+        char[] cchar=new char[Math.max(a.length(),b.length())+1];
+        int c=0;
+        int k=0;
+        
+        while(true){
+            if((m<0&&n<0)&&c==0){
+                break;
+            }
+            
+            int anum = 0;
+            int bnum=0;
+            
+            if(m>=0){
+                anum = achar[m] -'0';
+            }
+            if(n>=0){
+                bnum = bchar[n]-'0';
+            }
+            if(anum+bnum+c>1){
+                cchar[k] = (char)('0'+anum+bnum+c-2);
+                c=1;
+            }else{
+                cchar[k] = (char)('0'+anum+bnum+c);
+                c=0;
+            }
+            k++;
+            n--;
+            m--;
+        }
+        return new StringBuffer(new String(cchar,0,k)).reverse().toString();
+             
+    }
+}
