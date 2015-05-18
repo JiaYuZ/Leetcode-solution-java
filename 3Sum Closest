@@ -1,0 +1,31 @@
+//3Sum Closest 
+
+//Given an array S of n integers, find three integers in S such that the sum is closest to a given 
+//number, target. Return the sum of the three integers. You may assume that each input would have 
+//exactly one solution.
+
+//For example, given array S = {-1 2 1 -4}, and target = 1.
+//The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+public class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int l=nums.length;
+        if(l<3) return 0x7fffffff;
+        Arrays.sort(nums);
+        int sum=0;
+        int close,min=0x7fffffff,res=0;
+        for(int i=0;i<=l-3;i++){
+            int p=i+1;
+            int q=l-1;
+            while(p<q){
+                sum=nums[i]+nums[p]+nums[q];
+                if(sum==target) return sum;
+                close=Math.abs(sum-target);
+                if (close < min) { min = close; res = sum; }
+                if(sum<target) ++p;
+                else --q;
+            }
+        }
+        return res;
+    }
+}
