@@ -1,0 +1,27 @@
+//Search in Rotated Sorted Array II 
+
+//Follow up for "Search in Rotated Sorted Array":
+//What if duplicates are allowed?
+
+//Would this affect the run-time complexity? How and why?
+
+//Write a function to determine if a given target is in the array.
+
+public class Solution {
+    public boolean search(int[] nums, int target) {
+        if(nums==null||nums.length==0) return false;
+        Arrays.sort(nums);
+        int s=0;
+        int e=nums.length-1;
+        return exit(nums,target,s,e);
+    }
+    
+    boolean exit(int[] n,int t,int s,int e){
+        if(s>e) return false;
+        int m = (e+s)/2;
+        if(t==n[m]) return true;
+        if(t>n[m]){ return exit(n,t,m+1,e);}
+        else {return exit(n,t,s,m-1);}
+    }
+    
+}
